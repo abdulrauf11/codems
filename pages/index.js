@@ -7,7 +7,7 @@ import ThirdEditionDrop from '../components/thirdEditionDrop';
 
 export default function Home() {
   return (
-    <main className='mx-auto px-4 sm:w-[83%] sm:px-0'>
+    <main className='mx-auto px-4 sm:px-0 sm:w-[90%] lg:w-[83%]'>
       <Nav />
 
       <div className='my-10'>
@@ -20,9 +20,9 @@ export default function Home() {
 
       <section
         className='
-        my-64 space-y-12
-        md:space-y-20
-        xl:space-y-32'
+        my-40 space-y-12
+        md:space-y-20 md:my-64
+        xl:space-y-32 xl:my-72'
       >
         <h2 className='ml-auto section-heading'>
           We can write some cool shit.
@@ -30,11 +30,11 @@ export default function Home() {
         <ThirdEditionDrop />
       </section>
 
-      <div className='my-32'>
+      <div className='my-48 md:my-64 xl:my-80'>
         <Artist />
       </div>
 
-      <div className='mt-96 pb-32'>
+      <div className='pb-32 mt-64 md:mt-96'>
         <Footer />
       </div>
     </main>

@@ -1,9 +1,10 @@
 import { useAddress, useNetworkMismatch } from '@thirdweb-dev/react';
+import Connect from '../wallet/connect';
 
 function Loader() {
   return (
     <svg
-      className='animate-spin h-5 w-5 text-white'
+      className='animate-spin h-5 w-5 text-black'
       xmlns='http://www.w3.org/2000/svg'
       fill='none'
       viewBox='0 0 24 24'
@@ -25,20 +26,27 @@ function Loader() {
   );
 }
 
-export default function ClaimButton({ claim, busy }) {
+export default function ClaimButton({ claim, busy, otherBusy }) {
   const isMismatched = useNetworkMismatch();
   const address = useAddress();
 
   return (
-    <div className='w-full px-4 mt-9 pb-9'>
-      <button
-        className='w-full rounded-md p-4 bg-pink-500 flex items-center justify-center space-x-2 disabled:opacity-50'
-        disabled={!address || isMismatched || busy}
-        onClick={claim}
-      >
-        {busy && <Loader />}
-        <span>Mint now</span>
-      </button>
+    <div className='mt-6'>
+      {address ? (
+        <button
+          className='w-full rounded-xl bg-green text-black font-heading uppercase flex items-center justify-center space-x-2 disabled:opacity-50
+          text-sm pb-2 pt-3
+          lg:text-base lg:pb-4 lg:pt-5
+          '
+          disabled={isMismatched || busy || otherBusy}
+          onClick={claim}
+        >
+          {busy && <Loader />}
+          <span>Mint now</span>
+        </button>
+      ) : (
+        <Connect />
+      )}
     </div>
   );
 }

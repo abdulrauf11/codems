@@ -6,6 +6,8 @@
 
 @layer base {
 
+  ::selection { background: rgba(104, 244, 42, 0.6); }
+
   @font-face {
     font-family: 'Trap';
     src: url('/fonts/Trap-Bold.woff2') format('woff2'),
@@ -28,6 +30,28 @@
   h1, h2, h3, h4, h5, h6 {
     @apply font-heading;
   }
+}
 
-  
+@layer components {
+  .section-text {
+    @apply text-sm max-w-xs lg:text-base xl:text-lg;
+  }
+
+  .section-heading {
+    @apply text-[7vw] leading-[7vw] max-w-[55vw];
+  }
+}
+
+@layer utilities {
+  .text-stroke {
+    color: theme('colors.black');
+    -webkit-text-stroke: 3px theme('colors.green');
+    -webkit-text-fill-color: theme('colors.black');
+    /* text-shadow:
+        3px 3px 0 theme('colors.green'),
+      -1px -1px 0 theme('colors.green'),  
+       1px -1px 0 theme('colors.green'),
+       -1px 1px 0 theme('colors.green'),
+        1px 1px 0 theme('colors.green'); */
+  }
 }

@@ -1,21 +1,42 @@
+import About from '../components/about';
+import Artist from '../components/artist';
+import Footer from '../components/footer';
+import Hero from '../components/hero';
 import Nav from '../components/nav';
 import ThirdEditionDrop from '../components/thirdEditionDrop';
-import ThirdNFTDrop from '../components/thirdNFTDrop';
 
 export default function Home() {
   return (
-    <main>
+    <main className='mx-auto px-4 sm:w-[83%] sm:px-0'>
       <Nav />
 
-      <section className='container mx-auto space-y-10 my-20'>
-        <h1 className='text-5xl'>NFT Drop</h1>
-        <ThirdNFTDrop />
-      </section>
+      <div className='my-10'>
+        <Hero />
+      </div>
 
-      <section className='container mx-auto space-y-10 my-20'>
-        <h1 className='text-5xl'>Edition Drop</h1>
+      <div className='my-32'>
+        <About />
+      </div>
+
+      <section
+        className='
+        my-64 space-y-12
+        md:space-y-20
+        xl:space-y-32'
+      >
+        <h2 className='ml-auto section-heading'>
+          We can write some cool shit.
+        </h2>
         <ThirdEditionDrop />
       </section>
+
+      <div className='my-32'>
+        <Artist />
+      </div>
+
+      <div className='mt-96 pb-32'>
+        <Footer />
+      </div>
     </main>
   );
 }

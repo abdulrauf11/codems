@@ -14,7 +14,7 @@ export default function ThirdEditionDrop() {
 
   const [nfts, setNfts] = useState([]);
   const [claimConditions, setClaimConditions] = useState([]);
-  const [loading, setLoading] = useState(false);
+  const [loading, setLoading] = useState({});
   const [transaction, setTransaction] = useState({
     hash: '',
     error: null,
@@ -60,7 +60,7 @@ export default function ThirdEditionDrop() {
   }, [contract, nfts]);
 
   async function claim(id, quantity) {
-    setLoading(true);
+    setLoading({ ...loading, [id]: true });
     setTransaction({ hash: '', error: null });
     try {
       const result = await contract?.claim(id, quantity);
@@ -80,25 +80,33 @@ export default function ThirdEditionDrop() {
       if ('code' in error) errorCode = error.code;
       // issues with insufficient funds error code
       else if (error.reason?.includes('insufficient funds')) errorCode = -32000;
+
       setTransaction({ hash: '', error: errorCode });
     }
-    setLoading(false);
+    console.log(loading);
+    setLoading({ ...loading, [id]: false });
   }
 
   return (
-    <div className='grid grid-cols-3 gap-10'>
+    <div
+      className='grid grid-cols-1 gap-32 mx-auto 
+                  sm:w-8/12 
+                  md:w-full md:grid-cols-2 md:gap-x-10 
+                  lg:w-11/12 lg:gap-32 
+                  xl:gap-x-48 xl:gap-y-64'
+    >
       {nfts.length ? (
         nfts.map((nft, index) => (
-          <div key={nft.metadata.id} className='border'>
-            <TokenImage
-              src={nft.metadata.image}
-              alt={nft.metadata.description}
-            />
-            <div>
-              <div className='p-4 border-t text-xl font-heading text-center'>
+          <div key={nft.metadata.id}>
+            <div className='border-2 border-green rounded-xl overflow-hidden'>
+              <TokenImage
+                src={nft.metadata.image}
+                alt={nft.metadata.description}
+              />
+              <h3 className='py-6 px-1 border-t-2 border-green text-green text-center uppercase'>
                 {nft.metadata.name}
-              </div>
-              <div className='grid grid-cols-2 border-t border-b'>
+              </h3>
+              <div className='grid grid-cols-2 border-t-2 border-green'>
                 <Price
                   price={claimConditions[index]?.price}
                   quantity={1}
@@ -109,12 +117,12 @@ export default function ThirdEditionDrop() {
                   total={claimConditions[index]?.maxQuantity}
                 />
               </div>
-
-              <ClaimButton
-                claim={() => claim(nft.metadata.id, 1)}
-                busy={loading}
-              />
             </div>
+            <ClaimButton
+              claim={() => claim(nft.metadata.id, 1)}
+              busy={loading[nft.metadata.id] === true}
+              otherBusy={Object.keys(loading).some((i) => loading[i])}
+            />
           </div>
         ))
       ) : (

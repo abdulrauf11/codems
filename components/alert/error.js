@@ -1,8 +1,8 @@
 export default function AlertError({ children }) {
-  return <div className='border border-red-600 p-2 bg-black'>{children}</div>;
+  return <div className='border border-red p-2 bg-black'>{children}</div>;
 }
 
-export function RenderError(code) {
+export function RenderError({ code }) {
   if (code === 4001) {
     return <p>Transaction rejected!</p>;
   } else if (code === -32000) {

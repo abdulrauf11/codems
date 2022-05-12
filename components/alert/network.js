@@ -1,6 +1,8 @@
 import { useNetwork, useNetworkMismatch } from '@thirdweb-dev/react';
 import { useEffect, useState } from 'react';
 import { createPortal } from 'react-dom';
+import CrossSVG from '../svg/crossSVG';
+import ErrorSVG from '../svg/errorSVG';
 
 export default function AlertNetwork({ activeChainId }) {
   const [open, setOpen] = useState(true);
@@ -11,6 +13,10 @@ export default function AlertNetwork({ activeChainId }) {
   async function handleSwitch() {
     if (!switchNetwork) return;
     await switchNetwork(activeChainId);
+  }
+
+  function handleClick() {
+    setOpen(false);
   }
 
   // Check if document exists
@@ -25,20 +31,36 @@ export default function AlertNetwork({ activeChainId }) {
   if (!(activeChainId && isMismatched && open)) return null;
 
   return createPortal(
-    <div className='container mx-auto fixed left-0 right-0 bottom-20 z-10'>
-      <button className='bg-red' onClick={() => setOpen(false)}>
-        Close
-      </button>
-      <div className='border border-red p-2 bg-black'>
+    <div className='px-4 fixed left-0 right-0 bottom-20 z-20 flex justify-center'>
+      <AlertInner handleClick={handleClick}>
         <p>
-          You are currently connected to the wrong network. Please switch your
-          network to continue.{' '}
-          <button className='border' onClick={handleSwitch}>
-            SWITCH
-          </button>
+          You are currently connected to the wrong network. Please{' '}
+          <button className='underline font-bold' onClick={handleSwitch}>
+            switch your network
+          </button>{' '}
+          to continue.
         </p>
-      </div>
+      </AlertInner>
     </div>,
     document.body
+  );
+}
+
+function AlertInner({ children, handleClick }) {
+  return (
+    <div className='bg-red text-white rounded-xl flex items-start p-2'>
+      <div className='flex space-x-4 p-4 sm:p-6'>
+        <div>
+          <ErrorSVG />
+        </div>
+        <div>
+          <h6 className='uppercase'>Network Error</h6>
+          <div className='text-sm mt-1 max-w-md'>{children}</div>
+        </div>
+      </div>
+      <button onClick={handleClick}>
+        <CrossSVG />
+      </button>
+    </div>
   );
 }

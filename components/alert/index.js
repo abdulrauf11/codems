@@ -20,15 +20,18 @@ export default function Alert({ children, type }) {
     return null;
   }
 
+  function handleClick() {
+    setOpen(false);
+  }
+
   return createPortal(
-    <div className='container mx-auto fixed left-0 right-0 bottom-20 z-10'>
-      <button className='bg-red' onClick={() => setOpen(false)}>
-        Close
-      </button>
+    <div className='px-4 fixed left-0 right-0 bottom-20 z-20 flex justify-center'>
       {
         {
-          success: <AlertSuccess>{children}</AlertSuccess>,
-          error: <AlertError>{children}</AlertError>,
+          success: (
+            <AlertSuccess handleClick={handleClick}>{children}</AlertSuccess>
+          ),
+          error: <AlertError handleClick={handleClick}>{children}</AlertError>,
         }[type]
       }
     </div>,

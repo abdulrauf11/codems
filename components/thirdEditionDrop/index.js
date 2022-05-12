@@ -8,6 +8,7 @@ import TokenImage from './tokenImage';
 import GridLoader from './gridLoader';
 import Alert from '../alert';
 import { RenderError } from '../alert/error';
+import { RenderSuccess } from '../alert/success';
 
 export default function ThirdEditionDrop() {
   const contract = useEditionDrop(EDITION_DROP_CONTRACT_ADRESS);
@@ -131,7 +132,7 @@ export default function ThirdEditionDrop() {
 
       {hash && (
         <Alert type='success'>
-          <p>Your NFT was minted! See transaction hash: ${hash}</p>
+          <RenderSuccess hash={hash} />
         </Alert>
       )}
       {error !== null && (

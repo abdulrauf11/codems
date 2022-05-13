@@ -4,7 +4,7 @@ import { createPortal } from 'react-dom';
 import CrossSVG from '../svg/crossSVG';
 import ErrorSVG from '../svg/errorSVG';
 
-export default function AlertNetwork({ activeChainId }) {
+export default function AlertNetwork({ activeChainId, activeChainName }) {
   const [open, setOpen] = useState(true);
 
   const isMismatched = useNetworkMismatch();
@@ -36,7 +36,7 @@ export default function AlertNetwork({ activeChainId }) {
         <p>
           You are currently connected to the wrong network. Please{' '}
           <button className='underline font-bold' onClick={handleSwitch}>
-            switch your network
+            switch to the {activeChainName} network
           </button>{' '}
           to continue.
         </p>

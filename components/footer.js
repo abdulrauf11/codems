@@ -16,7 +16,7 @@ export default function Footer() {
             sm:flex-row sm:space-y-0 sm:space-x-12
             md:space-x-20'
       >
-        <span>code is poetry.</span>
+        <span>built with thirdweb.</span>
         <span>© copyright 2022.</span>
       </div>
     </footer>

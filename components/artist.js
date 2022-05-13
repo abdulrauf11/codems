@@ -6,7 +6,12 @@ export default function Artist() {
       <h2 className='section-heading'>
         Meet the Artist,
         <br />
-        <a href='#' className='text-green'>
+        <a
+          target='_blank'
+          rel='noopener noreferrer'
+          href='https://twitter.com/lilcoderman'
+          className='text-green'
+        >
           @lilcoderman
         </a>
         .

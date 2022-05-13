@@ -8,8 +8,6 @@ import ThirdEditionDrop from '../components/thirdEditionDrop';
 export default function Home() {
   return (
     <main className='mx-auto px-4 sm:px-0 sm:w-[90%] lg:w-[83%]'>
-      <Nav />
-
       <div className='my-10'>
         <Hero />
       </div>

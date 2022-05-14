@@ -1,6 +1,7 @@
 import { useEffect, useState } from 'react';
 import { createPortal } from 'react-dom';
 import AlertError from './error';
+import AlertNetwork from './network';
 import AlertSuccess from './success';
 
 export default function Alert({ children, type }) {
@@ -32,6 +33,9 @@ export default function Alert({ children, type }) {
             <AlertSuccess handleClick={handleClick}>{children}</AlertSuccess>
           ),
           error: <AlertError handleClick={handleClick}>{children}</AlertError>,
+          network: (
+            <AlertNetwork handleClick={handleClick}>{children}</AlertNetwork>
+          ),
         }[type]
       }
     </div>,

@@ -1,23 +1,13 @@
 import '../styles/globals.css';
-import { ChainId, ThirdwebProvider } from '@thirdweb-dev/react';
-import AlertNetwork from '../components/alert/network';
+import { ThirdwebProvider } from '@thirdweb-dev/react';
 import Nav from '../components/nav';
-
-// This is the chainId your dApp will work on.
-const activeChainId = ChainId.Rinkeby;
-const activeChainName = ChainId[activeChainId];
+import { ACTIVE_CHAIN_ID } from '../config';
 
 export default function MyApp({ Component, pageProps }) {
   return (
-    <ThirdwebProvider desiredChainId={activeChainId}>
-      <Nav activeChainName={activeChainName} />
-
+    <ThirdwebProvider desiredChainId={ACTIVE_CHAIN_ID}>
+      <Nav />
       <Component {...pageProps} />
-
-      <AlertNetwork
-        activeChainId={activeChainId}
-        activeChainName={activeChainName}
-      />
     </ThirdwebProvider>
   );
 }

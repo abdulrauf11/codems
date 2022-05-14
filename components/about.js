@@ -17,10 +17,9 @@ export default function About() {
           #
         </span>
       </div>
-      <p className='ml-auto mt-10 sm:mt-0 section-text'>
-        Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy
-        eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam
-        voluptua. At vero eos et
+      <p className='max-w-xs ml-auto mt-10 sm:mt-0 section-text'>
+        Codems is a collection of poems expressed through code. Each piece is
+        released as an ERC-1155 token and lives on the Polygon blockchain.
       </p>
     </section>
   );

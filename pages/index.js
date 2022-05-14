@@ -2,7 +2,6 @@ import About from '../components/about';
 import Artist from '../components/artist';
 import Footer from '../components/footer';
 import Hero from '../components/hero';
-import Nav from '../components/nav';
 import ThirdEditionDrop from '../components/thirdEditionDrop';
 
 export default function Home() {
@@ -22,9 +21,11 @@ export default function Home() {
         md:space-y-20 md:my-64
         xl:space-y-32 xl:my-72'
       >
-        <h2 className='ml-auto section-heading'>
+        {/* <h2 className='ml-auto section-heading'>
           We can write some cool shit.
-        </h2>
+        </h2> */}
+        <h2 className='ml-auto section-heading'>To mint, or not to mint.</h2>
+
         <ThirdEditionDrop />
       </section>
 

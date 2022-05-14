@@ -34,7 +34,7 @@
 
 @layer components {
   .section-text {
-    @apply text-sm max-w-xs lg:text-base xl:text-lg;
+    @apply text-sm lg:text-base xl:text-lg;
   }
 
   .section-heading {

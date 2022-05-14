@@ -11,14 +11,14 @@ export default function About() {
         </span>
         <span
           className='
-          font-heading text-stroke translate-y-[22%]
-          text-[17vw] leading-[17vw]'
+          font-heading translate-y-[22%]
+          text-[17vw] leading-[17vw] text-stroke'
         >
           #
         </span>
       </div>
       <p className='max-w-xs ml-auto mt-10 sm:mt-0 section-text'>
-        Codems is a collection of poems expressed through code. Each piece is
+        Codems is an NFT collection of poems written in code. Each piece is
         released as an ERC-1155 token and lives on the Polygon blockchain.
       </p>
     </section>

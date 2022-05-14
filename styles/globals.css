@@ -38,7 +38,7 @@
   }
 
   .section-heading {
-    @apply text-[7vw] leading-[7vw] max-w-[55vw];
+    @apply text-[7vw] leading-[7vw];
   }
 }
 

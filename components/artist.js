@@ -24,9 +24,6 @@ export default function Artist() {
             xl:gap-40'
       >
         <p className='max-w-sm section-text mt-20 xl:mt-32'>
-          {/* Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam
-          nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat,
-          sed diam voluptua. At vero eos et. */}
           I&apos;ve always had a hard time expressing my feelings through words.
           Coding, on the other hand, comes naturally to me. Writing codems is a
           way for me to put my thoughts into code.

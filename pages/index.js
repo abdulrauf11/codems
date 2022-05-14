@@ -11,7 +11,7 @@ export default function Home() {
         <Hero />
       </div>
 
-      <div className='my-32'>
+      <div className='my-32 md:my-48 xl:my-64'>
         <About />
       </div>
 
@@ -21,11 +21,9 @@ export default function Home() {
         md:space-y-20 md:my-64
         xl:space-y-32 xl:my-72'
       >
-        {/* <h2 className='ml-auto section-heading'>
-          We can write some cool shit.
-        </h2> */}
-        <h2 className='ml-auto section-heading'>To mint, or not to mint.</h2>
-
+        <h2 className='ml-auto section-heading max-w-[40vw]'>
+          To mint, or not to mint.
+        </h2>
         <ThirdEditionDrop />
       </section>
 

@@ -130,16 +130,12 @@ export default function ThirdEditionDrop() {
         <GridLoader />
       )}
 
-      {hash && (
-        <Alert type='success'>
-          <RenderSuccess hash={hash} />
-        </Alert>
-      )}
-      {error !== null && (
-        <Alert type='error'>
-          <RenderError code={error} />
-        </Alert>
-      )}
+      <Alert type='success' isActive={hash !== ''}>
+        <RenderSuccess hash={hash} />
+      </Alert>
+      <Alert type='error' isActive={error !== null}>
+        <RenderError code={error} />
+      </Alert>
     </div>
   );
 }

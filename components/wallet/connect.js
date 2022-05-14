@@ -6,6 +6,7 @@ import {
 import Image from 'next/image';
 import { useState, useRef, useEffect } from 'react';
 import useOutsideClick from '../../utils/useOutsideClick';
+import { motion, AnimatePresence } from 'framer-motion';
 
 function Select({ setOpen }) {
   const dropdownRef = useRef(null);
@@ -15,52 +16,49 @@ function Select({ setOpen }) {
   const connectWithWalletConnect = useWalletConnect();
   const connectWithCoinbaseWallet = useCoinbaseWallet();
 
+  const supportedWallets = [
+    {
+      name: 'MetaMask',
+      icon: '/icons/metamask.svg',
+      onClick: connectWithMetamask,
+    },
+    {
+      name: 'WalletConnect',
+      icon: '/icons/walletConnect.svg',
+      onClick: connectWithWalletConnect,
+    },
+    {
+      name: 'Coinbase Wallet',
+      icon: '/icons/coinbase.svg',
+      onClick: connectWithCoinbaseWallet,
+    },
+  ];
+
   useEffect(() => {
     click && setOpen(false);
   }, [click, setOpen]);
 
   return (
-    <div
+    <motion.div
+      animate={{ opacity: 1, scale: 1 }}
+      initial={{ opacity: 0, scale: 0, transformOrigin: '50% 0' }}
+      exit={{ opacity: 0, scale: 0 }}
       className='bg-white text-black text-sm absolute right-0 top-[100%] z-10 w-full border-2 border-black rounded-xl mt-2'
       ref={dropdownRef}
     >
-      <button
-        className='w-full py-6 flex items-center justify-center space-x-2'
-        onClick={connectWithMetamask}
-      >
-        <Image
-          src='/icons/metamask.svg'
-          alt='metamask'
-          width={20}
-          height={20}
-        />
-        <span>MetaMask</span>
-      </button>
-      <button
-        className='w-full border-y-2 border-black py-6 flex items-center justify-center space-x-2'
-        onClick={connectWithWalletConnect}
-      >
-        <Image
-          src='/icons/walletConnect.svg'
-          alt='walletConnect'
-          width={20}
-          height={20}
-        />
-        <span>WalletConnect</span>
-      </button>
-      <button
-        className='w-full py-6 flex items-center justify-center space-x-2'
-        onClick={connectWithCoinbaseWallet}
-      >
-        <Image
-          src='/icons/coinbase.svg'
-          alt='walletConnect'
-          width={20}
-          height={20}
-        />
-        <span>Coinbase Wallet</span>
-      </button>
-    </div>
+      {supportedWallets.map((wallet, index) => (
+        <button
+          key={wallet.name}
+          className={`w-full py-6 flex items-center justify-center space-x-2 ${
+            index === 1 && 'border-y-2 border-black'
+          }`}
+          onClick={wallet.onClick}
+        >
+          <Image src={wallet.icon} alt={wallet.name} width={20} height={20} />
+          <span>{wallet.name}</span>
+        </button>
+      ))}
+    </motion.div>
   );
 }
 
@@ -80,7 +78,7 @@ export default function Connect() {
         Connect Wallet
       </button>
 
-      {open && <Select setOpen={setOpen} />}
+      <AnimatePresence>{open && <Select setOpen={setOpen} />}</AnimatePresence>
     </div>
   );
 }

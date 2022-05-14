@@ -28,9 +28,9 @@ export function RenderSuccess({ hash }) {
         className='underline font-bold'
         target='_blank'
         rel='noopener noreferrer'
-        href={`https://rinkeby.etherscan.io/tx/${hash}`}
+        href={`https://mumbai.polygonscan.com/tx/${hash}`}
       >
-        Check it on etherscan here.
+        Check it on polygonscan here.
       </a>
     </p>
   );

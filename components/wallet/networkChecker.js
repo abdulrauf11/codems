@@ -11,10 +11,10 @@ export default function NetworkChecker() {
     await switchNetwork(ACTIVE_CHAIN_ID);
   }
 
-  if (!(ACTIVE_CHAIN_ID && isMismatched)) return null;
+  // if (!(ACTIVE_CHAIN_ID && isMismatched)) return null;
 
   return (
-    <Alert type='network'>
+    <Alert type='network' isActive={isMismatched}>
       <p>
         You are currently connected to the wrong network. Please{' '}
         <button className='underline font-bold' onClick={handleSwitch}>

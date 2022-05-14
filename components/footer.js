@@ -16,8 +16,19 @@ export default function Footer() {
             sm:flex-row sm:space-y-0 sm:space-x-12
             md:space-x-20'
       >
-        <span>built with thirdweb.</span>
-        <span>© copyright 2022.</span>
+        <span>
+          built with{' '}
+          <a
+            target='_blank'
+            rel='noopener noreferrer'
+            href='https://thirdweb.com/'
+            className='text-green'
+          >
+            thirdweb
+          </a>
+          .
+        </span>
+        <span>© copyright {new Date().getFullYear()}.</span>
       </div>
     </footer>
   );

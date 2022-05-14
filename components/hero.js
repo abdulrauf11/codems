@@ -1,6 +1,9 @@
+import { motion } from 'framer-motion';
+import StarSVG from './svg/starSVG';
+
 export default function Hero() {
   return (
-    <section className='flex space-x-[6vw]'>
+    <section className='flex space-x-[6vw] items-start'>
       <h1
         className='
         mt-32
@@ -10,13 +13,9 @@ export default function Hero() {
         <br />
         Poetry.
       </h1>
-      <span
-        className='
-        font-heading text-green
-        text-[38vw] leading-[38vw]'
-      >
-        *
-      </span>
+      <div className='w-[20.9vw]'>
+        <StarSVG />
+      </div>
     </section>
   );
 }

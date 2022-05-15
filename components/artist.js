@@ -1,4 +1,5 @@
 import Image from 'next/image';
+import avatar from '../public/avatar.png';
 
 export default function Artist() {
   return (
@@ -32,10 +33,11 @@ export default function Artist() {
         <div className='relative'>
           <div className='relative w-[60vw] h-[67vw] sm:w-[33vw] sm:h-[37vw]'>
             <Image
-              src='/avatar.png'
+              src={avatar}
               alt='avatar'
               layout='fill'
               objectFit='cover'
+              quality={100}
             />
           </div>
 

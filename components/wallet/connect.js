@@ -54,7 +54,14 @@ function Select({ setOpen }) {
           }`}
           onClick={wallet.onClick}
         >
-          <Image src={wallet.icon} alt={wallet.name} width={20} height={20} />
+          <Image
+            src={wallet.icon}
+            alt={wallet.name}
+            width={20}
+            height={20}
+            placeholder='blur'
+            quality={100}
+          />
           <span>{wallet.name}</span>
         </button>
       ))}

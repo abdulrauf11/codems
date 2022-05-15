@@ -5,7 +5,7 @@ export default function Seo() {
   const description =
     'Codems is an NFT collection of poems written in code. Each piece is released as an ERC-1155 token and lives on the Polygon blockchain.';
 
-  const metaImageUrl = '/meta-image.png';
+  const metaImageUrl = 'https://codems.vercel.app/meta-image.png';
 
   return (
     <Head>

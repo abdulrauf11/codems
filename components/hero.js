@@ -1,4 +1,3 @@
-import { motion } from 'framer-motion';
 import StarSVG from './svg/starSVG';
 
 export default function Hero() {

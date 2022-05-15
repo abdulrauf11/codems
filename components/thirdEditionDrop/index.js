@@ -15,12 +15,10 @@ export default function ThirdEditionDrop() {
 
   const [nfts, setNfts] = useState([]);
   const [claimConditions, setClaimConditions] = useState([]);
-  const [loading, setLoading] = useState({});
-  const [transaction, setTransaction] = useState({
-    hash: '',
-    error: null,
-  });
-  const { hash, error } = transaction;
+
+  const [txLoading, setTxLoading] = useState({});
+  const [txHash, setTxHash] = useState('');
+  const [txError, setTxError] = useState({ active: false, code: null });
 
   useEffect(() => {
     async function fetchNfts() {
@@ -60,14 +58,16 @@ export default function ThirdEditionDrop() {
     });
   }, [contract, nfts]);
 
-  async function claim(id, quantity) {
-    setLoading({ ...loading, [id]: true });
-    setTransaction({ hash: '', error: null });
+  async function claim(id, quantity = 1) {
+    // start loading
+    setTxLoading({ ...txLoading, [id]: true });
+    // reset tx
+    setTxHash('');
+    setTxError({ ...txError, active: false });
+
     try {
       const result = await contract?.claim(id, quantity);
       console.log(result);
-      const txHash = result.receipt.transactionHash;
-      setTransaction({ hash: txHash, error: null });
       // temp supply change
       const newNfts = [
         ...nfts.slice(0, id),
@@ -75,17 +75,18 @@ export default function ThirdEditionDrop() {
         ...nfts.slice(id + 1),
       ];
       setNfts(newNfts);
+
+      const txHash = result.receipt.transactionHash;
+      setTxHash(txHash);
     } catch (error) {
       console.log(error);
       let errorCode;
       if ('code' in error) errorCode = error.code;
       // issues with insufficient funds error code
       else if (error.reason?.includes('insufficient funds')) errorCode = -32000;
-
-      setTransaction({ hash: '', error: errorCode });
+      setTxError({ active: true, code: errorCode });
     }
-    console.log(loading);
-    setLoading({ ...loading, [id]: false });
+    setTxLoading({ ...txLoading, [id]: false });
   }
 
   return (
@@ -120,9 +121,9 @@ export default function ThirdEditionDrop() {
               </div>
             </div>
             <ClaimButton
-              claim={() => claim(nft.metadata.id, 1)}
-              busy={loading[nft.metadata.id] === true}
-              otherBusy={Object.keys(loading).some((i) => loading[i])}
+              claim={() => claim(nft.metadata.id)}
+              busy={txLoading[nft.metadata.id] === true}
+              otherBusy={Object.keys(txLoading).some((i) => txLoading[i])}
             />
           </div>
         ))
@@ -130,11 +131,11 @@ export default function ThirdEditionDrop() {
         <GridLoader />
       )}
 
-      <Alert type='success' isActive={hash !== ''}>
-        <RenderSuccess hash={hash} />
+      <Alert type='success' isActive={txHash !== ''}>
+        <RenderSuccess hash={txHash} />
       </Alert>
-      <Alert type='error' isActive={error !== null}>
-        <RenderError code={error} />
+      <Alert type='error' isActive={txError.active}>
+        <RenderError code={txError.code} />
       </Alert>
     </div>
   );

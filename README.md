@@ -16,3 +16,8 @@ yarn dev
 ```
 
 Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+
+## To do
+1. Do not disable mint button while transaction is processing.
+2. Add option to mint multiple editions at once.
+3. Update footer to include more info.

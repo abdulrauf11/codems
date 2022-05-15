@@ -28,7 +28,7 @@ export function RenderSuccess({ hash }) {
         className='underline font-bold'
         target='_blank'
         rel='noopener noreferrer'
-        href={`https://mumbai.polygonscan.com/tx/${hash}`}
+        href={`https://polygonscan.com/tx/${hash}`}
       >
         Check it on polygonscan here.
       </a>

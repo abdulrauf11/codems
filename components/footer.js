@@ -13,9 +13,18 @@ export default function Footer() {
       <div
         className='
             space-y-8 mt-20 flex flex-col justify-end items-end text-xs
-            sm:flex-row sm:space-y-0 sm:space-x-12
-            md:space-x-20'
+            md:flex-row md:space-y-0 md:space-x-20'
       >
+        <span>
+          <a
+            className='text-green'
+            target='_blank'
+            rel='noopener noreferrer'
+            href='https://opensea.io/collection/codems'
+          >
+            OpenSea
+          </a>
+        </span>
         <span>
           built with{' '}
           <a

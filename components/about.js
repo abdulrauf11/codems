@@ -19,7 +19,8 @@ export default function About() {
       </div>
       <p className='max-w-xs ml-auto mt-10 sm:mt-0 section-text'>
         Codems is an NFT collection of poems written in code. Each piece is
-        released as an ERC-1155 token and lives on the Polygon blockchain.
+        released as an ERC-1155 token and lives on the{' '}
+        <span className='text-green sm:text-white'>Polygon</span> blockchain.
       </p>
     </section>
   );

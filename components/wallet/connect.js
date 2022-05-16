@@ -59,7 +59,6 @@ function Select({ setOpen }) {
             alt={wallet.name}
             width={20}
             height={20}
-            placeholder='blur'
             quality={100}
           />
           <span>{wallet.name}</span>
